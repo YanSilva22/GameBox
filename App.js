@@ -2,19 +2,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import HeaderGameBox from './src/components/HeaderGameBox';
-import { colors } from './src/constants/colors';
+import GameBanner from './src/components/GameBanner';
+import { theme } from './src/constants/theme';
 
-const palette = colors.dark;
+const { colors, spacing } = theme;
 
 export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
-
       <View style={styles.container}>
         <HeaderGameBox />
+        <GameBanner />
       </View>
     </SafeAreaView>
   );
@@ -23,12 +23,13 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: palette.background,
+    backgroundColor: colors.background,
   },
 
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 12,
+    paddingHorizontal: spacing.md + 4,
+    paddingTop: spacing.sm + 4,
+    gap: spacing.md,
   },
 });
