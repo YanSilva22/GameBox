@@ -1,9 +1,9 @@
-
 export const colors = {
   dark: {
     background: '#10111F',
-    surface: '#191B2E',
+    surface: '#292B48',
     surfaceSecondary: '#22243A',
+    navigation: '#10111F',
 
     primary: '#8B5CF6',
     secondary: '#22D3EE',
@@ -21,6 +21,7 @@ export const colors = {
     background: '#F5F6FC',
     surface: '#FFFFFF',
     surfaceSecondary: '#EDEFFC',
+    navigation: '#F5F6FC',
 
     primary: '#7048E8',
     secondary: '#079BB8',
