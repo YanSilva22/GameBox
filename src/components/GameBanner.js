@@ -103,11 +103,12 @@ const styles = StyleSheet.create({
     buttom: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         backgroundColor: colors.accent,
         minHeight: 48,
         paddingHorizontal: spacing.md,
         borderRadius: radius.md,
+        gap: spacing.sm,
     },
 
     buttomText: {
