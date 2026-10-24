@@ -29,9 +29,9 @@ export default function NavigationBar() {
                 </Pressable>
 
                 <Pressable style={[styles.scoreboardButton, activePage === 'Scoreboard' && styles.activeButton]} onPress={() => setActivePage('Scoreboard')}>
-                    <Feather
-                        name="award"
-                        size={26}
+                    <MaterialCommunityIcons
+                        name="trophy"
+                        size={24}
                         color={activePage === 'Scoreboard' ? colors.text : colors.textSecondary}
                     />
                 </Pressable>
