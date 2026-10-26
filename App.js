@@ -1,43 +1,36 @@
-
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import HeaderGameBox from './src/components/HeaderGameBox';
-import GameBanner from './src/components/GameBanner';
-import NavigationBar from './src/components/NavigationBar';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from './src/screens/HomeScreen';
+import GamesScreen from './src/screens/GamesScreen';
+import ScoreScreen from './src/screens/ScoreScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 import { theme } from './src/constants/theme';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const { colors, spacing } = theme;
+const Stack = createNativeStackNavigator(); 
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar style="light" />
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <HeaderGameBox />
-          <GameBanner />
-        </View>
-        <NavigationBar />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{headerShown: false, animation: 'none',}}>
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          name="GameScreen"
+          component={GamesScreen}
+        />
+        <Stack.Screen
+          name="ScoreScreen"
+          component={ScoreScreen}
+        />
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-
-  container: {
-    flex: 1,
-  },
-
-  content: {
-    flex: 1,
-    paddingHorizontal: spacing.md,
-    paddingTop: spacing.md,
-    gap: spacing.md,
-  },
-});
