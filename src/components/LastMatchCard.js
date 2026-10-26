@@ -6,12 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 const { colors, spacing, radius } = theme;
 
 export default function LastMatchCard({}) {
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.text}>Última Partida</Text>
-                <Pressable style={styles.button} onPress={() => console.log('Ver Resultado')}>
+                <Pressable style={styles.button} onPress={() => navigation.navigate('ScoreScreen')}>
                     <Text style={styles.buttonText}>Ver Resultado</Text>
                 </Pressable>
             </View>
