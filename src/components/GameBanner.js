@@ -1,10 +1,12 @@
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
+import { useNavigation } from '@react-navigation/native';
 
 const { colors, spacing, radius } = theme;
 
 export default function GameBanner() {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -25,7 +27,7 @@ export default function GameBanner() {
                     />
                 </View>
                 <View style={styles.buttomContainer}>
-                    <Pressable style={styles.buttom} onPress={() => console.log('Iniciar Jogo')}>
+                    <Pressable style={styles.buttom} onPress={() => navigation.navigate('GameScreen')}>
                         <Feather name="play" size={24} color={colors.background} />
                         <Text style={styles.buttomText}>
                             Iniciar Jogo
