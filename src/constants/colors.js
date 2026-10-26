@@ -15,6 +15,13 @@ export const colors = {
 
     error: '#F87171',
     success: '#4ADE80',
+    
+    // LastMatchCard
+    cardBackground: '#1B1D31',
+    iconBackground: '#303B2A',
+    buttonText: '#9B5CFF',
+    mutedText: '#9B9DB5',
+    trophy: '#C8F45B',
   },
 
   light: {
@@ -33,5 +40,12 @@ export const colors = {
 
     error: '#DC2626',
     success: '#16A34A',
+
+    // LastMatchCard
+    cardBackground: '#FFFFFF',
+    iconBackground: '#E5EEDC',
+    buttonText: '#7048E8',
+    mutedText: '#686B84',
+    trophy: '#709A18',
   },
 };
