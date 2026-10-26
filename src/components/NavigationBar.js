@@ -2,17 +2,25 @@ import { View, StyleSheet, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const { colors, spacing, radius } = theme;
 
 
 export default function NavigationBar() {
-    const [activePage, setActivePage] = useState('Home');
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    const activePage = {
+        HomeScreen: 'Home',
+        GameScreen: 'Game Modes',
+        ScoreScreen: 'Scoreboard',
+        SettingsScreen: 'Config',
+    }[route.name];
     return (
         <View style={styles.container}>
             <View style={styles.pages}>
-                <Pressable style={[styles.homeButton, activePage === 'Home' && styles.activeButton]} onPress={() => setActivePage('Home')}>
+                <Pressable style={[styles.homeButton, activePage === 'Home' && styles.activeButton]} onPress={() => navigation.navigate('HomeScreen')}>
                     <Feather 
                         name="home" 
                         size={26} 
@@ -20,7 +28,7 @@ export default function NavigationBar() {
                     />
                 </Pressable>
 
-                <Pressable style={[styles.gameModesButton, activePage === 'Game Modes' && styles.activeButton]} onPress={() => setActivePage('Game Modes')}>
+                <Pressable style={[styles.gameModesButton, activePage === 'Game Modes' && styles.activeButton]} onPress={() => navigation.navigate('GameScreen')}>
                     <MaterialCommunityIcons 
                         name="gamepad-variant" 
                         size={26} 
@@ -28,7 +36,7 @@ export default function NavigationBar() {
                     />
                 </Pressable>
 
-                <Pressable style={[styles.scoreboardButton, activePage === 'Scoreboard' && styles.activeButton]} onPress={() => setActivePage('Scoreboard')}>
+                <Pressable style={[styles.scoreboardButton, activePage === 'Scoreboard' && styles.activeButton]} onPress={() => navigation.navigate('ScoreScreen')}>
                     <MaterialCommunityIcons
                         name="trophy"
                         size={24}
@@ -36,7 +44,7 @@ export default function NavigationBar() {
                     />
                 </Pressable>
 
-                <Pressable style={[styles.configButton, activePage === 'Config' && styles.activeButton]} onPress={() => setActivePage('Config')}>
+                <Pressable style={[styles.configButton, activePage === 'Config' && styles.activeButton]} onPress={() => navigation.navigate('SettingsScreen')}>
                     <Feather
                         name="settings"
                         size={26}
