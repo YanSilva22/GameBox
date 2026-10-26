@@ -6,12 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 const { colors, spacing, radius } = theme;
 
 export default function LastMatchCard({}) {
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.text}>Última Partida</Text>
-                <Pressable style={styles.button} onPress={() => navigation.navigate('ScoreScreen')}>
+                <Pressable style={styles.button} onPress={() => console.log('Ver Resultado')}>
                     <Text style={styles.buttonText}>Ver Resultado</Text>
                 </Pressable>
             </View>
@@ -20,7 +20,7 @@ export default function LastMatchCard({}) {
                     <MaterialCommunityIcons
                         name="trophy"
                         size={24}
-                        color="#C8F45B"
+                        color={colors.trophy}
                     />
                 </View>
                 <View style={styles.matchInfo}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: '#F5F5FF',
+    color: colors.text,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#9B5CFF',
+    color: colors.buttonText,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   matchResult: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1B1D31',
+    backgroundColor: colors.cardBackground,
     borderRadius: 20,
     padding: spacing.md,
     gap: 12,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: 46,
     height: 46,
     borderRadius: 16,
-    backgroundColor: '#303B2A',
+    backgroundColor: colors.iconBackground,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
   },
 
   winningTeam: {
-    color: '#F5F5FF',
+    color: colors.text,
     fontSize: 14,
     fontWeight: '700',
   },
 
   matchDate: {
-    color: '#9B9DB5',
+    color: colors.mutedText,
     fontSize: 10,
   },
 
@@ -109,13 +109,13 @@ const styles = StyleSheet.create({
   },
 
   textScore: {
-    color: '#F5F5FF',
+    color: colors.text,
     fontSize: 12,
     fontWeight: '800',
   },
 
   teams: {
-    color: '#9B9DB5',
+    color: colors.mutedText,
     fontSize: 10,
   },
 });
