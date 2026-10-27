@@ -45,8 +45,8 @@ export default function HomeScreen() {
                         icon="upload"
                         title="Importar perguntas"
                         subtitle="Importe uma planilha Excel ou CSV com perguntas e respostas"
-                        color= "#FDBA74"
-                        backgroundColor= "#422A18"
+                        color= {colors.colorActionCard3}
+                        backgroundColor= {colors.backgroundActionCard3}
                         onPress={() => navigation.navigate('GameScreen')}
                     />
                 </View>
