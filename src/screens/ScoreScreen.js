@@ -14,6 +14,7 @@ export default function ScoreScreen() {
         <View style={styles.content}>
           <HeaderPages
             icon="podium-gold"
+            iconColor= {colors.colorHeaderPages1}
             title="Placar"
             subtitle="Confira os resultados das partidas"
           />

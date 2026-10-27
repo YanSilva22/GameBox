@@ -15,6 +15,7 @@ export default function SettingsScreen() {
         <View style={styles.content}>
           <HeaderPages
             icon="cog-outline"
+            iconColor= {colors.colorHeaderPages2}
             title="Configurações"
             subtitle="Personalize sua experiência"
           />

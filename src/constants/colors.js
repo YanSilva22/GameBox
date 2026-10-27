@@ -1,7 +1,7 @@
 export const colors = {
   dark: {
     background: '#10111F',
-    surface: '#292B48',
+    surface: '#17182B',
     surfaceSecondary: '#22243A',
     navigation: '#10111F',
 
@@ -32,6 +32,11 @@ export const colors = {
     //ActionCard
     colorActionCard3: '#FDBA74',
     backgroundActionCard3: '#422A18',
+
+    //HeaderPages
+    colorHeaderPages: '#22D3EE',
+    colorHeaderPages1:'#C4F05A',
+    colorHeaderPages2:'#A78BFA',
   },
 
   light: {

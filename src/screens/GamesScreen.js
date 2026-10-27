@@ -14,6 +14,7 @@ export default function GamesScreen() {
         <View style={styles.content}>
           <HeaderPages
             icon="gamepad"
+            iconColor= {colors.colorHeaderPages}
             title="Modos de jogo"
             subtitle="Monte sua partida do seu jeito"
           />

@@ -4,14 +4,14 @@ import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { colors, spacing, radius } = theme;
 
-export default function HeaderPages({ icon, title, subtitle }) {
+export default function HeaderPages({ icon, iconColor, title, subtitle }) {
     return (
         <View style={styles.container}>
             <View style={styles.icon}>
                 <MaterialCommunityIcons
                     name={icon}
                     size={26}
-                    color={colors.textSecondary}
+                    color={iconColor}
                 />
             </View>
             <View style={styles.textContainer}>
