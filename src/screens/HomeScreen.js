@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
@@ -17,52 +17,63 @@ export default function HomeScreen() {
     const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar style="light" />
-
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <HeaderGameBox />
-          <GameBanner />
-          <LastMatchCard 
-          />
-          <ActionCard
-            icon="bluetooth"
-            title="Conectar ao circuito"
-            subtitle="Conecte o dispositivo GameBox"
-            color={colors.colorActionCard}
-            backgroundColor= {colors.backgroundActionCard}
-            onPress={() => navigation.navigate('SettingsScreen')}
-          />
-          <ActionCard
-            icon="bookmark"
-            title="Modos salvos"
-            subtitle="Acesse seus modelos salvos rapidamente"
-            color= {colors.colorActionCard2}
-            backgroundColor= {colors.backgroundActionCard2}
-            onPress={() => navigation.navigate('GameScreen')}
-          />
-        </View>
-
-        <NavigationBar />
-      </View>
+        <StatusBar style="light" />
+            <View style={styles.container}>
+                <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+                <View style={styles.content}>
+                    <HeaderGameBox />
+                    <GameBanner />
+                    <LastMatchCard 
+                    />
+                    <ActionCard
+                        icon="bluetooth"
+                        title="Conectar ao circuito"
+                        subtitle="Conecte o dispositivo GameBox"
+                        color={colors.colorActionCard}
+                        backgroundColor= {colors.backgroundActionCard}
+                        onPress={() => navigation.navigate('SettingsScreen')}
+                    />
+                    <ActionCard
+                        icon="bookmark"
+                        title="Modos salvos"
+                        subtitle="Acesse seus modelos salvos rapidamente"
+                        color= {colors.colorActionCard2}
+                        backgroundColor= {colors.backgroundActionCard2}
+                        onPress={() => navigation.navigate('GameScreen')}
+                    />
+                    <ActionCard
+                        icon="upload"
+                        title="Importar perguntas"
+                        subtitle="Importe uma planilha Excel ou CSV com perguntas e respostas"
+                        color= "#FDBA74"
+                        backgroundColor= "#422A18"
+                        onPress={() => navigation.navigate('GameScreen')}
+                    />
+                </View>
+                </ScrollView>
+            <NavigationBar />
+            </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
+    safeArea: {
+        flex: 1,
+        backgroundColor: colors.background,
+    },
 
-  container: {
-    flex: 1,
-  },
+    container: {
+        flex: 1,
+    },
 
-  content: {
-    flex: 1,
-    paddingHorizontal: spacing.md,
-    paddingTop: spacing.md,
-    gap: spacing.md,
-  },
+    content: {
+        paddingHorizontal: spacing.md,
+        paddingTop: spacing.md,
+        paddingBottom: spacing.md,
+        gap: spacing.md,
+    },
+    scroll: {
+        flex: 1,
+    },
 });
