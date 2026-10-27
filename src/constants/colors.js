@@ -37,6 +37,21 @@ export const colors = {
     colorHeaderPages: '#22D3EE',
     colorHeaderPages1:'#C4F05A',
     colorHeaderPages2:'#A78BFA',
+
+    // Quiz
+    quizBackground: '#261B49',
+    quizBorder: '#8B5CF6',
+    quizText: '#A78BFA',
+
+    // Time
+    timerBackground: '#102B3B',
+    timerBorder: '#0891B2',
+    timerText: '#22D3EE',
+
+    // HotPotato
+    teamBackground: '#292F23',
+    teamBorder: '#84A82D',
+    teamText: '#C4F05A',
   },
 
   light: {
