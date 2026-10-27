@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import NavigationBar from '../components/NavigationBar';
 import HeaderPages from '../components/HeaderPages';
+import GameCard from '../components/GameCard';
 import { theme } from '../constants/theme';
 
 const { colors, spacing } = theme;
@@ -18,6 +19,7 @@ export default function GamesScreen() {
             title="Modos de jogo"
             subtitle="Monte sua partida do seu jeito"
           />
+          <GameCard />
         </View>
 
         <NavigationBar />
