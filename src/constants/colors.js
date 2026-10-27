@@ -26,10 +26,12 @@ export const colors = {
     //ActionCard
     colorActionCard: '#A78BFA',
     backgroundActionCard: '#302344',
-
     //ActionCard
     colorActionCard2: '#22D3EE',
     backgroundActionCard2: '#193541',
+    //ActionCard
+    colorActionCard3: '#FDBA74',
+    backgroundActionCard3: '#422A18',
   },
 
   light: {
