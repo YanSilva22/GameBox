@@ -15,13 +15,17 @@ export const colors = {
 
     error: '#F87171',
     success: '#4ADE80',
-    
+
     // LastMatchCard
     cardBackground: '#1B1D31',
     iconBackground: '#303B2A',
     buttonText: '#9B5CFF',
     mutedText: '#9B9DB5',
     trophy: '#C8F45B',
+
+    //ActionCard
+    colorActionCard: '#A78BFA',
+    backgroundActionCard: '#302344',
   },
 
   light: {
