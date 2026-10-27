@@ -33,6 +33,14 @@ export default function HomeScreen() {
             backgroundColor= {colors.backgroundActionCard}
             onPress={() => navigation.navigate('SettingsScreen')}
           />
+          <ActionCard
+            icon="bookmark"
+            title="Modos salvos"
+            subtitle="Acesse seus modelos salvos rapidamente"
+            color= {colors.colorActionCard2}
+            backgroundColor= {colors.backgroundActionCard2}
+            onPress={() => navigation.navigate('GameScreen')}
+          />
         </View>
 
         <NavigationBar />
