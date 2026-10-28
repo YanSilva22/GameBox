@@ -52,6 +52,9 @@ export const colors = {
     teamBackground: '#292F23',
     teamBorder: '#84A82D',
     teamText: '#C4F05A',
+
+    // Error
+    colorError: '#FF6B6B'
   },
 
   light: {
