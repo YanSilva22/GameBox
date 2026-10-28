@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 
@@ -17,12 +17,17 @@ export default function GamesScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.content}>
-          <HeaderPages
-            icon="gamepad"
-            iconColor= {colors.colorHeaderPages}
-            title="Modos de jogo"
-            subtitle="Monte sua partida do seu jeito"
-          />
+          <View style={styles.headerSection}>
+            <HeaderPages
+              icon="gamepad"
+              iconColor= {colors.colorHeaderPages}
+              title="Modos de jogo"
+              subtitle="Monte sua partida do seu jeito"
+            />
+            <Text style={styles.text}>
+              Selecione um dos modos de jogo:
+            </Text>
+          </View>
           <GameCard selected={selectedCard === 1} onPress={() => setSelectedCard(1)} />
 
           <CardGameMode
@@ -81,6 +86,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
     paddingBottom: spacing.md,
-    gap: spacing.md,
+    gap: spacing.sm,
+  },
+
+  headerSection: {
+      gap: spacing.sm,
+  },
+
+  text: {
+    color: colors.secondary,
+    fontSize: 16,
+    fontWeight: '700',
+    textAlign: 'center',
+    letterSpacing: 0.3,
+    marginTop: spacing.xs,
+    marginBottom: spacing.xs,
   },
 });
