@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import NavigationBar from '../components/NavigationBar';
 import HeaderPages from '../components/HeaderPages';
@@ -14,6 +15,7 @@ const { colors, spacing } = theme;
 export default function GamesScreen() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [error, setError] = useState('');
+  const navigation = useNavigation();
   
   function handleContinue() {
     if (selectedCard === null) {
@@ -22,7 +24,7 @@ export default function GamesScreen() {
     }
 
     setError('');
-    console.log('Modo selecionado:', selectedCard);
+    navigation.navigate('GameConfig');
 }
   return (
     <SafeAreaView style={styles.safeArea}>
