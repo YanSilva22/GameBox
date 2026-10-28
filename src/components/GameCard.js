@@ -61,19 +61,6 @@ export default function GameCard({ selected, onPress }) {
                     </View>
                 </View>
             </View>
-
-            <View style={styles.buttonContainer}>
-                <Pressable style={styles.button} onPress={() => console.log("Clicado")}>
-                    <Text style={styles.buttonText}>
-                        Configurar combinação
-                    </Text>
-                    <Feather
-                        name="arrow-right"
-                        size={20}
-                        color={colors.text}
-                    />
-                </Pressable>
-            </View>
         </AnimatedCard>
     );
 }
