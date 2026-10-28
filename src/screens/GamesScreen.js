@@ -6,6 +6,7 @@ import NavigationBar from '../components/NavigationBar';
 import HeaderPages from '../components/HeaderPages';
 import GameCard from '../components/GameCard';
 import CardGameMode from '../components/CardGameMode';
+import Button from '../components/Button';
 import { theme } from '../constants/theme';
 
 const { colors, spacing } = theme;
@@ -51,6 +52,11 @@ export default function GamesScreen() {
             backgroundColor={colors.teamBackground}
             selected={selectedCard === 4}
             onPress={() => setSelectedCard(4)}
+          />
+          <Button
+            title="Continuar"
+            color={colors.primary}
+            onPress= {() => console.log("Teste")}
           />
         </View>
 
