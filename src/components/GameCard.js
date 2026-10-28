@@ -1,13 +1,13 @@
-
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { theme } from '../constants/theme';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import AnimatedCard from './AnimatedCard';
 
 const { colors, spacing, radius } = theme;
 
-export default function GameCard() {
+export default function GameCard({ selected, onPress }) {
     return (
-        <View style={styles.container}>
+        <AnimatedCard selected={selected} onPress={onPress} style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.header}>
                     <View style={styles.icon}>
@@ -63,7 +63,7 @@ export default function GameCard() {
             </View>
 
             <View style={styles.buttonContainer}>
-                <Pressable style={styles.button}>
+                <Pressable style={styles.button} onPress={() => console.log("Clicado")}>
                     <Text style={styles.buttonText}>
                         Configurar combinação
                     </Text>
@@ -74,7 +74,7 @@ export default function GameCard() {
                     />
                 </Pressable>
             </View>
-        </View>
+        </AnimatedCard>
     );
 }
 
@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         backgroundColor: colors.cardBackground,
-        borderWidth: 1.5,
-        borderColor: colors.primary,
         borderRadius: radius.lg,
         padding: spacing.md,
         gap: spacing.md,
