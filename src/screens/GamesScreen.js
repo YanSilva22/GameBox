@@ -24,8 +24,7 @@ export default function GamesScreen() {
     }
 
     setError('');
-    navigation.navigate('GameConfig');
-}
+    navigation.navigate('GameConfig', {selectedCard: selectedCard});}
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -97,6 +96,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
+    backgroundColor: colors.background,
   },
 
   content: {
