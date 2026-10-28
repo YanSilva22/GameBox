@@ -13,6 +13,17 @@ const { colors, spacing } = theme;
 
 export default function GamesScreen() {
   const [selectedCard, setSelectedCard] = useState(null);
+  const [error, setError] = useState('');
+  
+  function handleContinue() {
+    if (selectedCard === null) {
+        setError('Selecione um modo de jogo para continuar.');
+        return;
+    }
+
+    setError('');
+    console.log('Modo selecionado:', selectedCard);
+}
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -28,7 +39,7 @@ export default function GamesScreen() {
               Selecione um dos modos de jogo:
             </Text>
           </View>
-          <GameCard selected={selectedCard === 1} onPress={() => setSelectedCard(1)} />
+          <GameCard selected={selectedCard === 1} onPress={() => { setSelectedCard(1); setError(''); }}/>
 
           <CardGameMode
             icon="brain"
@@ -37,7 +48,7 @@ export default function GamesScreen() {
             color={colors.quizText}
             backgroundColor={colors.quizBackground}
             selected={selectedCard === 2}
-            onPress={() => setSelectedCard(2)}
+            onPress={() => { setSelectedCard(2); setError(''); }}
           />
 
           <CardGameMode
@@ -47,7 +58,7 @@ export default function GamesScreen() {
             color={colors.timerText}
             backgroundColor={colors.timerBackground}
             selected={selectedCard === 3}
-            onPress={() => setSelectedCard(3)}
+            onPress={() => { setSelectedCard(3); setError(''); }}
           />
           <CardGameMode
             icon="bomb"
@@ -56,12 +67,17 @@ export default function GamesScreen() {
             color={colors.teamText}
             backgroundColor={colors.teamBackground}
             selected={selectedCard === 4}
-            onPress={() => setSelectedCard(4)}
+            onPress={() => { setSelectedCard(4); setError(''); }}
           />
+          {error !== '' && (
+            <Text style={styles.error}>
+              {error}
+            </Text>
+          )}
           <Button
             title="Continuar"
             color={colors.primary}
-            onPress= {() => console.log("Teste")}
+            onPress= {handleContinue}
           />
         </View>
 
@@ -86,7 +102,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
     paddingBottom: spacing.md,
-    gap: spacing.sm,
+    gap: 12,
   },
 
   headerSection: {
@@ -101,5 +117,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     marginTop: spacing.xs,
     marginBottom: spacing.xs,
+  },
+
+  error: {
+    color: colors.colorError,
+    fontSize: 12,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 });
