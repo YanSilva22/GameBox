@@ -15,7 +15,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#10111F"
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "ios": {
       "supportsTablet": true
