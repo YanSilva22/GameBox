@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import * as IntentLauncher from 'expo-intent-launcher';
 
 import HeaderGameBox from '../components/HeaderGameBox';
 import GameBanner from '../components/GameBanner';
@@ -31,7 +32,7 @@ export default function HomeScreen() {
                         subtitle="Conecte o dispositivo GameBox"
                         color={colors.colorActionCard}
                         backgroundColor= {colors.backgroundActionCard}
-                        onPress={() => navigation.navigate('SettingsScreen')}
+                        onPress={() => IntentLauncher.startActivityAsync(IntentLauncher.ActivityAction.BLUETOOTH_SETTINGS)}
                     />
                     <ActionCard
                         icon="bookmark"
