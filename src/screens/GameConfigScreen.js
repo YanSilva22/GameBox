@@ -2,7 +2,8 @@ import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
 
 import HeaderBack from '../components/HeaderBack';
 import Button from '../components/Button';
@@ -11,12 +12,13 @@ import { theme } from '../constants/theme';
 const { colors, spacing, radius } = theme;
 
 export default function GameConfigScreen() {
+    const navigation = useNavigation();
     const route = useRoute();
-    const { selectedCard } = route.params;
+    const { selectedCard } = route.params ?? {};
 
     const [teams, setTeams] = useState([
-        { id: 1, name: '', players: 1 },
-        { id: 2, name: '', players: 1 },
+        { id: 1, name: 'Equipe 1', players: 1 },
+        { id: 2, name: 'Equipe 2', players: 1 },
     ]);
 
     function updateTeamName(id, name) {
@@ -139,7 +141,7 @@ export default function GameConfigScreen() {
                     <Button
                         title="Próximo: revisar"
                         color={colors.primary}
-                        onPress={() => console.log('Revisar partida', teams)}
+                        onPress={() => navigation.navigate('GameConfigScreen2', { selectedCard, teams })}
                     />
 
                     <Text style={styles.footerHint}>
