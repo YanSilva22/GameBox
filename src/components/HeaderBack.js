@@ -5,7 +5,7 @@ import { theme } from '../constants/theme';
 
 const { colors, spacing, radius } = theme;
 
-export default function HeaderBack({ title, subtitle, step, page }) {
+export default function HeaderBack({ title, subtitle, step, page, params }) {
     const navigation = useNavigation();
 
     return (
@@ -18,7 +18,7 @@ export default function HeaderBack({ title, subtitle, step, page }) {
                     ]}
                     onPress={() => {
                         if (page) {
-                            navigation.navigate(page);
+                            navigation.navigate(page, params);
                         }
                     }}
                 >
