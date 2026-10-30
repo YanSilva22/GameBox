@@ -5,6 +5,7 @@ import GamesScreen from './src/screens/GamesScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import GameConfigScreen from './src/screens/GameConfigScreen';
+import GameConfigScreen2 from './src/screens/GameConfigScreen2';
 import { theme } from './src/constants/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -27,6 +28,10 @@ export default function App() {
           name="GameConfig"
           component={GameConfigScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+            name="GameConfigScreen2"
+            component={GameConfigScreen2}
         />
         <Stack.Screen
           name="ScoreScreen"
