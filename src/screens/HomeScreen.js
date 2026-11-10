@@ -48,7 +48,7 @@ export default function HomeScreen() {
                         subtitle="Importe uma planilha Excel ou CSV com perguntas e respostas"
                         color= {colors.colorActionCard3}
                         backgroundColor= {colors.backgroundActionCard3}
-                        onPress={() => navigation.navigate('GameScreen')}
+                        onPress={() => navigation.navigate('ImportCSVScreen')}
                     />
                 </View>
                 </ScrollView>
