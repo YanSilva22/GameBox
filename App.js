@@ -6,6 +6,7 @@ import ScoreScreen from './src/screens/ScoreScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import GameConfigScreen from './src/screens/GameConfigScreen';
 import GameConfigScreen2 from './src/screens/GameConfigScreen2';
+import ImportCSVScreen from './src/screens/ImportCSVScreen';
 import { theme } from './src/constants/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -32,6 +33,10 @@ export default function App() {
         <Stack.Screen
             name="GameConfigScreen2"
             component={GameConfigScreen2}
+        />
+        <Stack.Screen
+          name="ImportCSVScreen"
+          component={ImportCSVScreen}
         />
         <Stack.Screen
           name="ScoreScreen"
