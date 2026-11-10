@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HeaderBack from '../components/HeaderBack';
 import Button from '../components/Button';
 import ActionCard from '../components/ActionCard';
@@ -17,15 +17,69 @@ export default function GameConfigScreen2(){
 
     const navigation = useNavigation();
 
-    const [limitType, setLimitType] = useState('time');
-    const [timeLimit, setTimeLimit] = useState('10');
-    const [scoreLimit, setScoreLimit] = useState(100);
 
-    function changeScoreLimit(direction) {
-        setScoreLimit((current) =>
-            Math.max(100, current + direction * 25)
-        );
+    const [rounds, setRounds] = useState({
+        quiz: 1,
+        time: 1,
+        hotPotato: 1,
+    });
+
+    const gameModes = {
+        1: [
+            {
+                id: 'quiz',
+                title: 'Quiz',
+                description: 'Rodadas de perguntas e respostas',
+                icon: 'brain',
+            },
+            {
+                id: 'time',
+                title: 'Acerte o tempo',
+                description: 'Rodadas para acertar o tempo',
+                icon: 'clock',
+            },
+            {
+                id: 'hotPotato',
+                title: 'Batata quente',
+                description: 'Rodadas de batata quente',
+                icon: 'bomb',
+            },
+        ],
+        2: [
+            {
+                id: 'quiz',
+                title: 'Quiz',
+                description: 'Rodadas de perguntas e respostas',
+                icon: 'brain',
+            },
+        ],
+        3: [
+            {
+                id: 'time',
+                title: 'Acerte o tempo',
+                description: 'Rodadas para acertar o tempo',
+                icon: 'clock',
+            },
+        ],
+        4: [
+            {
+                id: 'hotPotato',
+                title: 'Batata quente',
+                description: 'Rodadas de batata quente',
+                icon: 'bomb',
+            },
+        ],
+    };
+
+    const selectedModes = gameModes[selectedCard] || gameModes[2];
+
+    function changeRounds(mode, direction) {
+        setRounds((current) => ({
+            ...current,
+            [mode]: Math.max(1, Math.min(99, current[mode] + direction)),
+        }));
     }
+
     return(
         <SafeAreaView style={styles.safeArea}>
             <ScrollView
@@ -49,12 +103,11 @@ export default function GameConfigScreen2(){
 
                     <View style={styles.intro}>
                         <Text style={styles.heading}>
-                            Quando a partida termina?
+                            Quantas rodadas terá a partida?
                         </Text>
 
                         <Text style={styles.description}>
-                            Escolha se a partida será encerrada por tempo
-                            ou por pontuação e defina o limite desejado.
+                            Defina a quantidade de rodadas para cada modo de jogo.
                         </Text>
                     </View>
                     <View style={styles.cardConfig}>
@@ -108,113 +161,80 @@ export default function GameConfigScreen2(){
 
                     <View style={styles.cardTextInput}>
                         <Text style={styles.textEspec}>
-                            Como deseja encerrar a partida?
+                            Quantidade de rodadas
                         </Text>
 
-                        <View style={styles.buttonInput}>
-                            <Pressable
-                                style={[
-                                    styles.optionButton,
-                                    limitType === 'time' && styles.optionActive,
-                                ]}
-                                onPress={() => setLimitType('time')}
-                            >
-                                <Feather
-                                    name="clock"
-                                    size={18}
-                                    color={limitType === 'time' ? colors.text : colors.textSecondary}
-                                />
-                                <Text
-                                    style={[
-                                        styles.optionText,
-                                        limitType === 'time' && styles.optionTextActive,
-                                    ]}
-                                >
-                                    Por tempo
-                                </Text>
-                            </Pressable>
+                        <Text style={styles.description}>
+                            Defina quantas rodadas cada modo terá na partida.
+                        </Text>
 
-                            <Pressable
-                                style={[
-                                    styles.optionButton,
-                                    limitType === 'score' && styles.optionActive,
-                                ]}
-                                onPress={() => setLimitType('score')}
-                            >
-                                <Feather
-                                    name="award"
-                                    size={18}
-                                    color={limitType === 'score' ? colors.text : colors.textSecondary}
-                                />
-                                <Text
-                                    style={[
-                                        styles.optionText,
-                                        limitType === 'score' && styles.optionTextActive,
-                                    ]}
-                                >
-                                    Por pontuação
-                                </Text>
-                            </Pressable>
-                        </View>
+                        {selectedModes.map((mode) => (
+                            <View key={mode.id} style={styles.roundCard}>
+                                <View style={styles.roundHeader}>
+                                    <View style={styles.roundIcon}>
+                                        <MaterialCommunityIcons 
+                                            name={mode.icon}   
+                                            size={20} 
+                                            color={colors.primary} 
+                                        />
+                                    </View>
 
-                        {limitType === 'time' && (
-                            <View style={styles.limitContainer}>
-                                <Text style={styles.limitTitle}>Duração da partida</Text>
+                                    <View style={styles.roundInfo}>
+                                        <Text style={styles.roundTitle}>
+                                            {mode.title}
+                                        </Text>
 
-                                <View style={styles.inputRow}>
-                                    <TextInput
-                                        style={styles.valueInput}
-                                        value={timeLimit}
-                                        onChangeText={setTimeLimit}
-                                        keyboardType="number-pad"
-                                        placeholder="Ex.: 10"
-                                        placeholderTextColor={colors.textSecondary}
-                                    />
-                                    <Text style={styles.unitText}>minutos</Text>
+                                        <Text style={styles.helperText}>
+                                            {mode.description}
+                                        </Text>
+                                    </View>
                                 </View>
 
-                                <Text style={styles.helperText}>
-                                    A partida termina quando o tempo definido acabar.
-                                </Text>
-                            </View>
-                        )}
-
-                        {limitType === 'score' && (
-                            <View style={styles.limitContainer}>
-                                <Text style={styles.limitTitle}>Pontuação para vencer</Text>
-
-                                <View style={styles.scoreSelector}>
+                                <View style={styles.roundSelector}>
                                     <Pressable
-                                        style={styles.scoreButton}
-                                        onPress={() => changeScoreLimit(-1)}
-                                        disabled={scoreLimit <= 100}
+                                        style={styles.roundButton}
+                                        onPress={() => changeRounds(mode.id, -1)}
+                                        disabled={rounds[mode.id] <= 1}
                                     >
                                         <Feather
                                             name="minus"
                                             size={20}
-                                            color={scoreLimit <= 100 ? colors.textSecondary : colors.text}
+                                            color={
+                                                rounds[mode.id] <= 1
+                                                    ? colors.textSecondary
+                                                    : colors.text
+                                            }
                                         />
                                     </Pressable>
 
-                                    <Text style={styles.scoreValue}>{scoreLimit} pts</Text>
+                                    <View style={styles.roundValueContainer}>
+                                        <Text style={styles.roundValue}>
+                                            {rounds[mode.id]}
+                                        </Text>
+
+                                        <Text style={styles.helperText}>
+                                            rodadas
+                                        </Text>
+                                    </View>
 
                                     <Pressable
-                                        style={styles.scoreButton}
-                                        onPress={() => changeScoreLimit(1)}
+                                        style={styles.roundButton}
+                                        onPress={() => changeRounds(mode.id, 1)}
+                                        disabled={rounds[mode.id] >= 99}
                                     >
                                         <Feather
                                             name="plus"
                                             size={20}
-                                            color={colors.text}
+                                            color={
+                                                rounds[mode.id] >= 99
+                                                    ? colors.textSecondary
+                                                    : colors.text
+                                            }
                                         />
                                     </Pressable>
                                 </View>
-
-                                <Text style={styles.helperText}>
-                                    Cada acerto vale 25 pontos para a equipe.
-                                </Text>
                             </View>
-                        )}
+                        ))}
                     </View>
 
                     <ActionCard
@@ -245,6 +265,7 @@ export default function GameConfigScreen2(){
     );
 }
 
+
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
@@ -252,17 +273,11 @@ const styles = StyleSheet.create({
     },
 
     scrollView: {
-        
+        flex: 1,
     },
 
     scrollContent: {
         flexGrow: 1,
-    },
-
-    container: {
-        flex: 1,
-        padding: spacing.md,
-        gap: spacing.md,
     },
 
     container: {
@@ -377,97 +392,65 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
 
-    buttonInput: {
-        flexDirection: 'row',
-        gap: spacing.sm,
-    },
-
-    optionButton: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: spacing.xs,
-        paddingVertical: spacing.md,
-        paddingHorizontal: spacing.sm,
-        borderRadius: radius.md,
-        borderWidth: 1,
-        borderColor: colors.border,
-        backgroundColor: colors.background,
-    },
-
-    optionActive: {
-        backgroundColor: colors.primary,
-        borderColor: colors.primary,
-    },
-
-    optionText: {
-        color: colors.textSecondary,
-        fontSize: 13,
-        fontWeight: '500',
-    },
-
-    optionTextActive: {
-        color: colors.text,
-        fontWeight: '600',
-    },
-
-    limitContainer: {
-        gap: spacing.sm,
-        marginTop: spacing.xs,
-    },
-
-    limitTitle: {
-        color: colors.text,
-        fontSize: 14,
-        fontWeight: '600',
-    },
-
-    inputRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: spacing.sm,
-    },
-
-    valueInput: {
-        flex: 1,
-        backgroundColor: colors.background,
-        color: colors.text,
-        borderWidth: 1,
-        borderColor: colors.border,
-        borderRadius: radius.md,
-        paddingHorizontal: spacing.md,
-        paddingVertical: spacing.sm,
-        fontSize: 16,
-    },
-
-    unitText: {
-        color: colors.textSecondary,
-        fontSize: 14,
-    },
-
-    scoreSelector: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: colors.background,
-        borderRadius: radius.md,
-        padding: spacing.sm,
-    },
-
-    scoreButton: {
-        width: 44,
-        height: 44,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: radius.md,
+    roundCard: {
         backgroundColor: colors.surfaceSecondary,
+        borderRadius: radius.md,
+        padding: spacing.md,
+        gap: spacing.md,
     },
 
-    scoreValue: {
+    roundHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: spacing.md,
+    },
+
+    roundIcon: {
+        width: 40,
+        height: 40,
+        backgroundColor: colors.surface,
+        borderRadius: radius.md,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    roundInfo: {
+        flex: 1,
+        gap: spacing.xs,
+    },
+
+    roundTitle: {
         color: colors.text,
-        fontSize: 20,
-        fontWeight: '700',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+
+    roundSelector: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: spacing.xl,
+    },
+
+    roundButton: {
+        width: 40,
+        height: 40,
+        borderRadius: radius.md,
+        backgroundColor: colors.surface,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    roundValueContainer: {
+        alignItems: 'center',
+        minWidth: 70,
+        gap: spacing.xs,
+    },
+
+    roundValue: {
+        color: colors.text,
+        fontSize: 24,
+        fontWeight: 'bold',
     },
 
     helperText: {
