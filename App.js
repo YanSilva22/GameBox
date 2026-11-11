@@ -1,5 +1,7 @@
-import { StyleSheet, View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { useEffect, useState} from 'react';
+import { getDatabase } from './src/database/dataBase';
 import HomeScreen from './src/screens/HomeScreen';
 import GamesScreen from './src/screens/GamesScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
@@ -7,13 +9,26 @@ import SettingsScreen from './src/screens/SettingsScreen';
 import GameConfigScreen from './src/screens/GameConfigScreen';
 import GameConfigScreen2 from './src/screens/GameConfigScreen2';
 import ImportCSVScreen from './src/screens/ImportCSVScreen';
-import { theme } from './src/constants/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const { colors, spacing } = theme;
 const Stack = createNativeStackNavigator(); 
 
 export default function App() {
+  const [databaseReady, setDatabaseReady] = useState(false);
+  useEffect(() => {
+    async function prepareDatabase() {
+      try {
+        await getDatabase();
+        setDatabaseReady(true);
+
+      } catch (error) {
+        console.error('Database initialization error:', error);
+      }
+    }
+
+    prepareDatabase();
+  }, []);
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{headerShown: false, animation: 'none',}}>
